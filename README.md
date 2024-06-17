@@ -18,3 +18,11 @@ The class itself is not big and is pretty well documented, so for now I won't re
 
 - Only tested on Linux so far.
 - Expects a fairly default configuration of the device. If you've customized your MFT, some of these functions may not work as expected.
+
+## Todo
+
+- Switch banks.
+- Side switches (can do with click, etc., but not intuitive - whic cc num?).
+- LED brightness.
+- Pulse.
+- Custom pulse/strobe frequencies.
