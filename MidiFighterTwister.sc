@@ -1,6 +1,7 @@
 Mft {
   classvar isSetup = false;
   classvar mftID;
+  classvar toggles;
   classvar <out;
 
   *init {
@@ -10,6 +11,7 @@ Mft {
       MIDIClient.init(verbose: false);
       MIDIIn.connectAll(false);
       MIDIdef.freeAll;
+      toggles = false ! 127;
 
       mft = MIDIClient.sources.detect({|e| e.device == "Midi Fighter Twister"});
       if (mft != nil, { 
@@ -46,7 +48,7 @@ Mft {
   }
 
   // Set a function to execute when a knob is pushed down.
-  *down {
+  *press {
     | sym, cc = 0, func |
     MIDIdef.cc(sym, {
       | val, num, chan, src |
@@ -56,11 +58,24 @@ Mft {
   }
 
   // Set a function to execute when a knob is released.
-  *up {
+  *release {
     | sym, cc = 0, func |
     MIDIdef.cc(sym, {
       | val, num, chan, src |
       if(val == 0, { func.(val)});
+      }, ccNum: cc, chan: 1
+    );
+  }
+
+  // Alternately calls one of two functions each time a knob is pressed.
+  *toggle {
+    | sym, cc = 0, on, off |
+    MIDIdef.cc(sym, {
+      | val, num, chan, src |
+      if(val == 127, {
+        toggles[cc] = toggles[cc].not;
+        if(toggles[cc], on, off);
+      });
       }, ccNum: cc, chan: 1
     );
   }
