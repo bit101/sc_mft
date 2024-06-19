@@ -30,11 +30,11 @@ Mft.twist(\pan, 2, {
 
 // knob 15 is play/stop on press. strobes when playing.
 Mft.toggle(\play, 15, {
-  Mft.strobe(15, true);
+  Mft.strobe(15);
   ~playing = true;
   f = Synth(\simple, [\freq, ~freq, \amp, ~amp, \pan, ~pan]);
 }, {
-  Mft.strobe(15, false);
+  Mft.strobe(15, 0);
   ~playing = false;
   f.free;
 });
