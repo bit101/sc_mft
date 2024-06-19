@@ -22,7 +22,4 @@ The class itself is not big and is pretty well documented, so for now I won't re
 ## Todo
 
 - Switch banks.
-- Side switches (can do with click, etc., but not intuitive - whic cc num?).
 - LED brightness.
-- Pulse.
-- Custom pulse/strobe frequencies.
