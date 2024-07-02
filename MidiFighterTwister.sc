@@ -88,6 +88,13 @@ Mft {
         ^val;
     }
 
+	// Posts the name and specced value of a knob (as set in the twist function). Will fail if symbol does not exist.
+	*post {
+		| sym |
+		var val = Mft.get(sym);
+		postf("%: %\n", sym, val);
+	}
+
 
 
     /////////////////////////////////////
