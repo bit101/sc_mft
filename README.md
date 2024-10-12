@@ -16,7 +16,7 @@ The class itself is not big and is pretty well documented, so for now I won't re
 
 ## Caveats
 
-- Only tested on Linux so far.
+- Tested on Linux and MacOS, not Windows.
 - Expects a fairly default configuration of the device. If you've customized your MFT, some of these functions may not work as expected.
 
 ## Todo
