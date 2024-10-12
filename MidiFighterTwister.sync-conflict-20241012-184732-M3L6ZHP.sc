@@ -24,11 +24,7 @@ Mft {
             mft = MIDIClient.sources.detect({|e| e.device == "Midi Fighter Twister"});
             if (mft != nil, {
                 out = MIDIOut.newByName(mft.device, mft.name);
-				if(thisProcess.platform.name == \linux, {
-					out.connect(mft.uid);
-				}, {
-					out.connect();
-				});
+                out.connect();
                 isSetup = true;
                 "Midi Fighter Twister is set up!".postln;
             }, {
