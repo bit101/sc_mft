@@ -23,11 +23,12 @@ Mft {
 
             mft = MIDIClient.sources.detect({|e| e.device == "Midi Fighter Twister"});
             if (mft != nil, {
-                mftID = mft.uid;
-                out = MIDIOut(0);
-                out.connect(mftID);
+                out = MIDIOut.newByName(mft.device, mft.name);
+                out.connect();
                 isSetup = true;
                 "Midi Fighter Twister is set up!".postln;
+            }, {
+                "Midi Fighter Twister not found.".postln;
             });
         }, {
             "Midi Fighter Twister is already set up!".postln;
