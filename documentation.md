@@ -23,7 +23,7 @@ Mft.twist(\freq, 0, 440, ControlSpec(20, 10000, \exp), {
 
 `Mft.setNorm(ccNum, normalValue)`
 
-Sets the value of a knob using a normalized value (0.0 to 1.0). The actual value of the knob reported may be different if a control spec has been defined.
+Sets the value of a knob using a normalized value (0.0 to 1.0). The raw value of the knob will still be a value from 0 to 127.
 
 ---
 ### getNorm
@@ -127,7 +127,7 @@ Mft.toggle(\toggler, 0, {
 
 `Mft.sideButton(\symbol, buttonNum, bankNum, function)`
 
-Sets a function that will execute when a given button (1-6) in a given bank (1-4) is clicked. Note: buttons 2 and 5 on each banck are set to change the bank, so they will not respond to this method. The function will receive a value of 127 on press and 0 on release.
+Sets a function that will execute when a given button (1-6) in a given bank (1-4) is clicked. Note: buttons 2 and 5 on each bank are set to change the bank, so they will not respond to this method. The function will receive a value of 127 on press and 0 on release.
 
 ---
 ### sideButtonPress
