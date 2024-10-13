@@ -52,7 +52,7 @@ Sets the value of a knob that has been set up with the `Mft.twist` function. It 
 
 `Mft.get(\symbol)`
 
-Gets the specced value of a knob that has bene set up with the `Mft.twist` function.
+Gets the specced value of a knob that has been set up with the `Mft.twist` function.
 
 #### post
 
