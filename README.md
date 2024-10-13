@@ -1,6 +1,6 @@
 # sc_mft
 
-This is a simple class for intercting with the [Midi Fighter Twister](https://www.midifighter.com/shop/midi-fighter-twister) device in [SuperCollider](https://supercollider.github.io/).
+This is a simple extension for interacting with the [Midi Fighter Twister](https://www.midifighter.com/shop/midi-fighter-twister) device in [SuperCollider](https://supercollider.github.io/).
 
 It gives you access to many of the features of the device with some simple constructs.
 
