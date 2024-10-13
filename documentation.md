@@ -10,6 +10,18 @@ Bank 1:             Bank 2:             Bank 3:             Bank 4:
 12  13  14  15      28  29  30  31      44  45  46  47      60  61  62  63
 ```
 
+Side buttons are handled differently. They are always numbed 1-6 but you have to specify which bank you are using.
+
+```
+All banks:
+  ____________
+ |            |
+1|            |4
+2|            |5
+3|            |6
+ |____________|
+```
+
 ## Twist knob functions
 
 ### twist
