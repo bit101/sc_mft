@@ -123,17 +123,76 @@ Mft.toggle(\toggler, 0, {
 
 ### Side button functions
 
-Documentation coming soon.
+#### sideButton
+
+`Mft.sideButton(\symbol, buttonNum, bankNum, function)`
+
+Sets a function that will execute when a given button (1-6) in a given bank (1-4) is clicked. Note: buttons 2 and 5 on each banck are set to change the bank, so they will not respond to this method. The function will receive a value of 127 on press and 0 on release.
+
+#### sideButtonPress
+
+`Mft.sideButtonPress(\symbol, buttonNum, bankNum, function)`
+
+Same as `Mft.sideButton` but only responds to presses. No value is passed to the function.
+
+#### sideButtonRelease
+
+`Mft.sideButtonRelease(\symbol, buttonNum, bankNum, function)`
+
+Same as `Mft.sideButton` but only responds to releases. No value is passed to the function.
+
+#### sideButtonToggle
+
+`Mft.sideButtonToggle(\symbol, buttonNum, bankNum, onFunc, offFunc)`
+
+Alternately calls `onFunc` and `offFunc` each time a side button is pressed.
 
 ### LED control
 
-Documentation coming soon.
+#### cycleRGB
+
+`Mft.cycleRGB(ccNum, on)`
+
+Sets the given rgb led cycling through colors if `on` is true, or stops cycling if `on` is false.
+
+#### strobe
+
+`Mft.strobe(ccNum, rate)`
+
+Sets the given rgb led flashing. Rate: 0 = no strobe, 8 = fastest.
+
+#### pulse
+
+`Mft.pulse(ccNum, rate)`
+
+Sets the given rgb led pulsing. Rate: 0 = no strobe, 7 = fastest.
+
+#### strobeRing
+
+`Mft.strobeRing(ccNum, rate)`
+
+Sets the given ring leds flashing. Rate: 0 = no strobe, 8 = fastest.
+
+#### pulseRing
+
+`Mft.pulseRing(ccNum, rate)`
+
+Sets the given ring leds pulsing. Rate: 0 = no strobe, 8 = fastest.
+
+#### setRGB
+
+`Mft.setRGB(ccNum, value)`
+
+Sets the given rgb led's color. 0 = active color, 127 = inactive color.
+Values 1-126 set colors on a spectrum made of blue, cyan, green, yellow, orange, red, magenta, purple.
 
 ### Custom control
 
-Documentation coming soon.
+#### control
 
+`Mft.control(channel, ccNum, value)`
 
+Sends an arbitrary value to a cc on a channel. For implementing any features not covered above.
 
 ## Caveats
 
