@@ -1,6 +1,6 @@
 # Documentation
 
-Note: `ccNum` is the number of the twist knob on the device, from 0 to 63. cc 0 to 15 are the knobs in bank 1. Knobs 16 to 31 are bank 2 and so on.
+Note: `ccNum` is the number of the twist knob on the device, from 0 to 63. Knobs 0 to 15 are bank 1. Knobs 16 to 31 are bank 2 and so on.
 
 ```
 Bank 1:             Bank 2:             Bank 3:             Bank 4:
