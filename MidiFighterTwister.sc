@@ -9,6 +9,7 @@ Mft {
     classvar <out;
 
     *init {
+        | outPort = 0 |
         var mft;
         if (isSetup != true, {
             "Setting up Midi Fighter Twister. Please wait...".postln;
@@ -21,9 +22,9 @@ Mft {
             symCCs = ();
             specs = nil ! 128;
 
-            mft = MIDIClient.sources.detect({|e| e.device == "Midi Fighter Twister"});
+            mft = MIDIClient.destinations.detect({|e| e.device == "Midi Fighter Twister"});
             if (mft != nil, {
-                out = MIDIOut.newByName(mft.device, mft.name);
+                out = MIDIOut.new(outPort, mft.uid);
                 if(thisProcess.platform.name == \linux, {
                     out.connect(mft.uid);
                 }, {
