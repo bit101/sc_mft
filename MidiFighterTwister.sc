@@ -24,11 +24,11 @@ Mft {
             mft = MIDIClient.sources.detect({|e| e.device == "Midi Fighter Twister"});
             if (mft != nil, {
                 out = MIDIOut.newByName(mft.device, mft.name);
-				if(thisProcess.platform.name == \linux, {
-					out.connect(mft.uid);
-				}, {
-					out.connect();
-				});
+                if(thisProcess.platform.name == \linux, {
+                    out.connect(mft.uid);
+                }, {
+                    out.connect();
+                });
                 isSetup = true;
                 "Midi Fighter Twister is set up!".postln;
             }, {
@@ -49,15 +49,20 @@ Mft {
     // Initializes the knob's value and display to the init value.
     *twist {
         | sym, cc = 0, initVal = 0, spec, func |
+        var lastValue;
         symCCs[sym] = cc;
         specs[cc] = spec;
         Mft.setNorm(cc, spec.unmap(initVal));
+
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             val = val / 127;
             ccValues[cc] = val;
             val = spec.map(val);
-            func.(val);
+            if( val != lastValue, {
+                lastValue = val;
+                func.(val);
+            });
         }, ccNum: cc, chan: 0);
     }
 
@@ -93,14 +98,12 @@ Mft {
         ^val;
     }
 
-	// Posts the name and specced value of a knob (as set in the twist function). Will fail if symbol does not exist.
-	*post {
-		| sym |
-		var val = Mft.get(sym);
-		postf("%: %\n", sym, val);
-	}
-
-
+    // Posts the name and specced value of a knob (as set in the twist function). Will fail if symbol does not exist.
+    *post {
+        | sym |
+        var val = Mft.get(sym);
+        postf("%: %\n", sym, val);
+    }
 
     /////////////////////////////////////
     // Knob buttons.
@@ -113,8 +116,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             func.(val);
-        }, ccNum: cc, chan: 1
-        );
+        }, ccNum: cc, chan: 1);
     }
 
     // Set a function to execute when a knob is pushed down.
@@ -123,8 +125,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 127, func);
-        }, ccNum: cc, chan: 1
-        );
+        }, ccNum: cc, chan: 1);
     }
 
     // Set a function to execute when a knob is released.
@@ -133,8 +134,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 0, func);
-        }, ccNum: cc, chan: 1
-        );
+        }, ccNum: cc, chan: 1);
     }
 
     // Alternately calls one of two functions each time a knob is pressed.
@@ -146,8 +146,14 @@ Mft {
                 toggles[cc] = toggles[cc].not;
                 if(toggles[cc], on, off);
             });
-        }, ccNum: cc, chan: 1
-        );
+        }, ccNum: cc, chan: 1);
+    }
+
+    *clearToggles {
+        (0..127).do({
+            | i |
+            toggles[i] = false;
+        });
     }
 
 
@@ -169,8 +175,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             func.(val);
-        }, ccNum: cc, chan: 3
-        );
+        }, ccNum: cc, chan: 3);
     }
 
     // Set a function to execute when a side button is pushed down.
@@ -185,8 +190,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 127, func);
-        }, ccNum: cc, chan: 3
-        );
+        }, ccNum: cc, chan: 3);
     }
 
     // Set a function to execute when a side button is released.
@@ -201,8 +205,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 0, func);
-        }, ccNum: cc, chan: 3
-        );
+        }, ccNum: cc, chan: 3);
     }
 
     // Alternately calls one of two functions each time a side button is pressed.
@@ -220,8 +223,7 @@ Mft {
                 sideToggles[cc] = sideToggles[cc].not;
                 if(sideToggles[cc], on, off);
             });
-        }, ccNum: cc, chan: 3
-        );
+        }, ccNum: cc, chan: 3);
     }
 
 
@@ -251,6 +253,13 @@ Mft {
     *pulse {
         | cc=0, rate=4 |
         out.control(2, cc, 9 + rate.clip(0, 7));
+    }
+
+    // Sets the brightness of the rgb led.
+    // Range: 0-30
+    *rgbBrightness {
+        | cc=0, bright=30 |
+        out.control(2, cc, 17 + bright.clip(0, 30));
     }
 
     // Sets the ring leds flashing.
