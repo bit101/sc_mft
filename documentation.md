@@ -22,6 +22,21 @@ All banks:
  |____________|
 ```
 
+## Initialization
+
+## init
+
+`Mft.init(outPort=0)`
+
+Initializes the connection to the device. Sets the SuperCollider MIDI out port to use to connect to the devices. Default is 0.
+
+Examples:
+
+```
+Mft.init;    // uses port 0.
+Mft.init(1); // uses port 1.
+```
+
 ## Twist knob functions
 
 ### twist
@@ -142,6 +157,13 @@ Mft.toggle(\toggler, 0, {
 ```
 
 ---
+### clearToggles
+
+`Mft.clearToggles`
+
+Clears the state of all toggles to false.
+
+---
 
 ## Side button functions
 
@@ -217,6 +239,13 @@ Sets the given ring leds pulsing. Rate: 0 = no strobe, 8 = fastest.
 
 Sets the given rgb led's color. 0 = active color, 127 = inactive color.
 Values 1-126 set colors on a spectrum made of blue, cyan, green, yellow, orange, red, magenta, purple.
+
+---
+### rgbBrightness
+
+`Mft.rgbBrightness(ccNum, value)`
+
+Sets the brightness of the given rgb led. Range: 0-30.
 
 ---
 
