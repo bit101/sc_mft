@@ -295,6 +295,13 @@ Mft {
         });
     }
 
+    // Sets the ring leds' brightness.
+    // Range: 0-30
+    *ringBrightness {
+        | cc=0, bright=0 |
+        out.control(2, cc, 65 + bright.clip(0, 30));
+    }
+
     // Sets the color of the rgb led.
     // 0 = active color, 127 = inactive color.
     // 1-126 is a color on the spectrum:
