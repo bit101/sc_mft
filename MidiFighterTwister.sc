@@ -45,6 +45,12 @@ Mft {
       MIDIdef.freeAll;
     }
 
+    // Frees a single MIDIdef function, identified by its symbol.
+    *freeDef {
+      | sym |
+      MIDIdef(sym).free;
+    }
+
     /////////////////////////////////////
     // Twist knob values.
     /////////////////////////////////////
