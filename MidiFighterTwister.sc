@@ -40,6 +40,11 @@ Mft {
         });
     }
 
+    // Frees all MIDIdef functions, which are otherwise permanent.
+    *freeAll {
+      MIDIdef.freeAll;
+    }
+
     /////////////////////////////////////
     // Twist knob values.
     /////////////////////////////////////
@@ -64,7 +69,7 @@ Mft {
                 lastValue = val;
                 func.(val);
             });
-        }, ccNum: cc, chan: 0);
+        }, ccNum: cc, chan: 0).permanent_(true);
     }
 
     // Set the normalized value of a knob from 0.0 - 1.0 using its cc num.
@@ -117,7 +122,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             func.(val);
-        }, ccNum: cc, chan: 1);
+        }, ccNum: cc, chan: 1).permanent_(true);
     }
 
     // Set a function to execute when a knob is pushed down.
@@ -126,7 +131,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 127, func);
-        }, ccNum: cc, chan: 1);
+        }, ccNum: cc, chan: 1).permanent_(true);
     }
 
     // Set a function to execute when a knob is released.
@@ -135,7 +140,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 0, func);
-        }, ccNum: cc, chan: 1);
+        }, ccNum: cc, chan: 1).permanent_(true);
     }
 
     // Alternately calls one of two functions each time a knob is pressed.
@@ -147,7 +152,7 @@ Mft {
                 toggles[cc] = toggles[cc].not;
                 if(toggles[cc], on, off);
             });
-        }, ccNum: cc, chan: 1);
+        }, ccNum: cc, chan: 1).permanent_(true);
     }
 
     *clearToggles {
@@ -176,7 +181,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             func.(val);
-        }, ccNum: cc, chan: 3);
+        }, ccNum: cc, chan: 3).permanent_(true);
     }
 
     // Set a function to execute when a side button is pushed down.
@@ -191,7 +196,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 127, func);
-        }, ccNum: cc, chan: 3);
+        }, ccNum: cc, chan: 3).permanent_(true);
     }
 
     // Set a function to execute when a side button is released.
@@ -206,7 +211,7 @@ Mft {
         MIDIdef.cc(sym, {
             | val, num, chan, src |
             if(val == 0, func);
-        }, ccNum: cc, chan: 3);
+        }, ccNum: cc, chan: 3).permanent_(true);
     }
 
     // Alternately calls one of two functions each time a side button is pressed.
@@ -224,7 +229,7 @@ Mft {
                 sideToggles[cc] = sideToggles[cc].not;
                 if(sideToggles[cc], on, off);
             });
-        }, ccNum: cc, chan: 3);
+        }, ccNum: cc, chan: 3).permanent_(true);
     }
 
 
