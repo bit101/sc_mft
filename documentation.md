@@ -36,7 +36,14 @@ Examples:
 Mft.init;    // uses port 0.
 Mft.init(1); // uses port 1.
 ```
+---
+## freeDef
 
+Frees a single MIDIdef function, identified by its symbol.
+
+`Mft.freeDef(\symbol)`
+
+---
 ## freeAll
 
 `Mft.freeAll`
