@@ -37,6 +37,12 @@ Mft.init;    // uses port 0.
 Mft.init(1); // uses port 1.
 ```
 
+## freeAll
+
+`Mft.freeAll`
+
+Frees all MIDIdef functions, which are otherwise created as permanent.
+
 ## Twist knob functions
 
 ### twist
