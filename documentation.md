@@ -39,9 +39,9 @@ Mft.init(1); // uses port 1.
 ---
 ## freeDef
 
-Frees a single MIDIdef function, identified by its symbol.
-
 `Mft.freeDef(\symbol)`
+
+Frees a single MIDIdef function, identified by its symbol.
 
 ---
 ## freeAll
@@ -49,6 +49,9 @@ Frees a single MIDIdef function, identified by its symbol.
 `Mft.freeAll`
 
 Frees all MIDIdef functions, which are otherwise created as permanent.
+
+
+---
 
 ## Twist knob functions
 
@@ -69,18 +72,11 @@ Mft.twist(\freq, 0, 440, ControlSpec(20, 10000, \exp), {
 ```
 
 ---
-### setNorm
+### get
 
-`Mft.setNorm(ccNum, normalValue)`
+`Mft.get(\symbol)`
 
-Sets the value of a knob using a normalized value (0.0 to 1.0). The raw value of the knob will still be a value from 0 to 127.
-
----
-### getNorm
-
-`Mft.getNorm(ccNum)`
-
-Returns the value of a knob normalized to a value from 0.0 to 1.0.
+Gets the specced value of a knob that has been set up with the `Mft.twist` function.
 
 ---
 ### set
@@ -90,11 +86,18 @@ Returns the value of a knob normalized to a value from 0.0 to 1.0.
 Sets the value of a knob that has been set up with the `Mft.twist` function. It uses the symbol name and control spec for that knob.
 
 ---
-### get
+### getNorm
 
-`Mft.get(\symbol)`
+`Mft.getNorm(ccNum)`
 
-Gets the specced value of a knob that has been set up with the `Mft.twist` function.
+Returns the value of a knob normalized to a value from 0.0 to 1.0.
+
+---
+### setNorm
+
+`Mft.setNorm(ccNum, normalValue)`
+
+Sets the value of a knob using a normalized value (0.0 to 1.0). The raw value of the knob will still be a value from 0 to 127.
 
 ---
 ### post
@@ -209,20 +212,13 @@ Alternately calls `onFunc` and `offFunc` each time a side button is pressed.
 
 ---
 
-## LED control
+## RGB LED control
 
 ### cycleRGB
 
 `Mft.cycleRGB(ccNum, on)`
 
 Sets the given rgb led cycling through colors if `on` is true, or stops cycling if `on` is false.
-
----
-### strobe
-
-`Mft.strobe(ccNum, rate)`
-
-Sets the given rgb led flashing. Rate: 0 = no strobe, 8 = fastest.
 
 ---
 ### pulse
@@ -232,18 +228,11 @@ Sets the given rgb led flashing. Rate: 0 = no strobe, 8 = fastest.
 Sets the given rgb led pulsing. Rate: 0 = no strobe, 7 = fastest.
 
 ---
-### strobeRing
+### rgbBrightness
 
-`Mft.strobeRing(ccNum, rate)`
+`Mft.rgbBrightness(ccNum, value)`
 
-Sets the given ring leds flashing. Rate: 0 = no strobe, 8 = fastest.
-
----
-### pulseRing
-
-`Mft.pulseRing(ccNum, rate)`
-
-Sets the given ring leds pulsing. Rate: 0 = no strobe, 8 = fastest.
+Sets the brightness of the given rgb led. Range: 0-30.
 
 ---
 ### setRGB
@@ -254,11 +243,38 @@ Sets the given rgb led's color. 0 = active color, 127 = inactive color.
 Values 1-126 set colors on a spectrum made of blue, cyan, green, yellow, orange, red, magenta, purple.
 
 ---
-### rgbBrightness
+### strobe
 
-`Mft.rgbBrightness(ccNum, value)`
+`Mft.strobe(ccNum, rate)`
+
+Sets the given rgb led flashing. Rate: 0 = no strobe, 8 = fastest.
+
+
+
+---
+
+## Ring LEDs control
+
+---
+### pulseRing
+
+`Mft.pulseRing(ccNum, rate)`
+
+Sets the given ring leds pulsing. Rate: 0 = no strobe, 8 = fastest.
+
+---
+### ringBrightness
+
+`Mft.ringBrightness(ccNum, value)`
 
 Sets the brightness of the given rgb led. Range: 0-30.
+
+---
+### strobeRing
+
+`Mft.strobeRing(ccNum, rate)`
+
+Sets the given ring leds flashing. Rate: 0 = no strobe, 8 = fastest.
 
 ---
 
